@@ -1,0 +1,2 @@
+# SIR Model - SPA
+This is a Single Page Application (SPA) that simulates the SIR model (Susceptible, Infected, Recovered) for epidemiology. It visualizes the spread of infectious diseases over time and demonstrates how different parameters affect the dynamics.

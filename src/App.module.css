@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}  
+
+.App {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: #FFFCE8; 
+  font-family: "Geologica", sans-serif;
+  color: #100007;
+}
+
+.App h1 {
+  margin: 30px;
+  font-size: 2.7rem;
+  letter-spacing: 0.2rem;
+  text-align: center;
+  text-shadow: 
+    1px 1px 0px #00000062,
+    -1px 1px 0px #00000062,
+    1px -1px 0px #00000062, 
+    -1px -1px 0px #00000062;
+}
+
+.App__sideBar {
+  color: #F6EDE3;
+  background-color: #100007;
+	width: 25%;
+}

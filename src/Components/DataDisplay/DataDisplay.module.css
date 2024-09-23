@@ -1,0 +1,19 @@
+.DataDisplay {
+	width: 80%;
+	display: flex;
+	justify-content: space-around;
+
+}
+
+.DataDisplay__data {
+	display: flex;
+	align-items: center;
+	margin: 10px;
+	font-size: 1.2rem;
+} 
+
+.DataDisplay__colorBox {
+	width: 22px;
+	height: 22px;
+	margin: 5px 10px;
+}
