@@ -10,3 +10,10 @@
   border: 1px solid rgba(255, 255, 255, 1); 
   padding: 5px;
 }
+
+@media (max-width: 991px) {
+  .PopulationChart {
+    width: 85%;
+    grid-template-columns: repeat(10, 1fr);
+  }
+}

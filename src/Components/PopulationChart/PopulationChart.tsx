@@ -1,16 +1,29 @@
 import { FaPerson } from "react-icons/fa6" 
 import styles from "./PopulationChart.module.css" 
 import { SColor, IColor, RColor } from "../../globalVars"
+import { useEffect, useState } from "react"
+import useWindowWidth from "../../Hooks/useWindowWidth"
 
 export const PopulationChart = ({ data }: { data: SIR | undefined }) => {
   if (!data ||  data.S + data.I + data.R  === 0) return <div>No data</div>
   const totalPopulation = data.S + data.I + data.R 
+  const [ isMobile, setIsMobile ] = useState<boolean>(false)
+  const [ populationLength, setPopulationLength ] = useState<number>(108)
+  const windowWidth = useWindowWidth()
+
+  useEffect(() => {
+    setIsMobile(windowWidth <= 991)
+  }, [windowWidth]) 
+  
+  useEffect(() => {
+    setPopulationLength(isMobile ? 50 : 108)
+  }, [isMobile]) 
   
   const populationPercentage = (n: number): number => {
-    const result = parseInt(((n * 108) / totalPopulation).toFixed(), 10)
+    const result = parseInt(((n * populationLength) / totalPopulation).toFixed(), 10)
     
     if (result < 0) return 0
-    if (result > 108) return 108
+    if (result > populationLength) return populationLength
     
     return result
   }
@@ -24,8 +37,8 @@ export const PopulationChart = ({ data }: { data: SIR | undefined }) => {
     ...new Array(IPercentage).fill("I")
   ]
                         
-  if (populationArr.length > 108) populationArr.pop()
-  if (populationArr.length < 108) populationArr.push("I")
+  if (populationArr.length > populationLength) populationArr.pop()
+  if (populationArr.length < populationLength) populationArr.push("I")
     
   const getColor = (sir: string): string => {
     if (sir === "S") return SColor

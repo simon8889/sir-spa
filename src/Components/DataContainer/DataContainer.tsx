@@ -1,22 +1,37 @@
 import { useEffect, useState } from "react"
-import { useDay } from "../Hooks/useDay"
-import { useSIRParameters } from "../Hooks/useSIRParametes"
+import { useDay } from "../../Hooks/useDay"
+import { useSIRParameters } from "../../Hooks/useSIRParametes"
 import { LineChart, PieChart } from "@mui/x-charts"
 import styles from "./DataContainer.module.css"
 import { DataDisplay } from "../DataDisplay"
 import { Equations } from "../Equations"
 import { PopulationChart } from "../PopulationChart"
 import { SColor, IColor, RColor, API_URL } from "../../globalVars"
+import useWindowWidth from "../../Hooks/useWindowWidth"
+import { TiThMenu } from "react-icons/ti"
+import { useMenuState } from "../../Hooks/useMenuState"
 
 export const DataContainer = () => {
 	
   const day = useDay(state => state.day)
   const parameters = useSIRParameters(state => state.data)
   const { infection, recuperation, population, infected } = parameters
+  const { isMenuOpen, updateMenuState } = useMenuState()
 	
   const [ SIRData, setSIRData ] = useState<SIR[]>([])
   const [ currentDayData, setCurrentDayData ] = useState<SIR>({ S: 0, I: 0, R: 0})
-		
+  const [ isMobile, setIsMobile ] = useState<boolean>(false)
+  const [ chartWidth, setChartWidth ] = useState<number>(450)
+  const windowWidth = useWindowWidth()
+
+  useEffect(() => {
+    setIsMobile(windowWidth <= 991)
+  }, [windowWidth]) 
+  
+  useEffect(() => {
+    setChartWidth(isMobile ? 350 : 450)
+  }, [isMobile]) 
+	
   const parametersToSend = {
 		  days: 360,
 		  infection_rate: infection,
@@ -44,6 +59,11 @@ export const DataContainer = () => {
 	
   return (
     <section className={styles.DataContainer}>
+      { isMobile && 
+        <div className={styles.DataContainer__menuIcon} onClick={() => updateMenuState(!isMenuOpen)}>
+          <TiThMenu size={"30px"} color="#FFFCE8" />
+        </div>
+      } 
       <header className={styles.DataContainer__header}>
         <h2>Dia: {day}</h2>
         <DataDisplay currentDayData={currentDayData}/>		
@@ -105,7 +125,7 @@ export const DataContainer = () => {
 					    },
 					  ]}
 				  sx={{padding:"8px"}}
-				  width={450}
+				  width={chartWidth}
 				  height={290}
           />
         </div>

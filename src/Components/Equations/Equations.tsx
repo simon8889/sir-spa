@@ -1,5 +1,5 @@
 import Latex from "react-latex"
-import { useSIRParameters } from "../Hooks/useSIRParametes"
+import { useSIRParameters } from "../../Hooks/useSIRParametes"
 import styles from "./Equations.module.css"
 
 export const Equations = () => {

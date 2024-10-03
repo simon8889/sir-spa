@@ -1,6 +1,6 @@
 import { useEffect } from "react"
-import { useSIRParameters } from "../Hooks/useSIRParametes"
-import { useDay } from "../Hooks/useDay"
+import { useSIRParameters } from "../../Hooks/useSIRParametes"
+import { useDay } from "../../Hooks/useDay"
 import { InputRange } from "./InputRange"
 
 export const Inputs = () => {
