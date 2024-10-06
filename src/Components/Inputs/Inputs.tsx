@@ -53,7 +53,7 @@ export const Inputs = () => {
       />
       <InputRange 
         title="Infectado iniciales" 
-        needDebounce 
+        needDebounce
         value={infected} 
         setValue={parameters.setInfected} 
         min={10} 

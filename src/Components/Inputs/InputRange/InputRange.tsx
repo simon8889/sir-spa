@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import styles from "./InputRange.module.css"
 
 type InputRangeProps = {
@@ -35,6 +35,11 @@ export const InputRange = ({ title, max, min, step, value, setValue, needDebounc
     }
     setValue(newValue)	
   }
+  
+  useEffect(() => {
+    setInternalValue(value)
+  }, [value])
+  
 	
   return (
     <div className={styles.InputRange}>

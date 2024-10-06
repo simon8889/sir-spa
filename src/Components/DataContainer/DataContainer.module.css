@@ -90,11 +90,12 @@
 	
 	.DataContainer__label > h4{
 		margin: 0px;
+		height: 20px;
 	}
 
 	.DataContainer__chart {
 		width: 100%;
-		margin-top: 15px;
-		margin-bottom: 15px;
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 }
